@@ -7,7 +7,8 @@ import CommentList from './CommentList';
 export default () => {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
-    const json = await http.getPosts();
+    const json = await http.getAllPostsAndComments();
+    console.log(json);
     setPosts(Object.values(json));
   };
 
@@ -19,7 +20,7 @@ export default () => {
     <div>
       <h1>Posts</h1>
       <div className='d-flex flex-wrap flex-row justify-content-start'>
-        {posts.map(({ id, title }) => {
+        {posts.map(({ id, title, comments }) => {
           return (
             <div
               className='card'
@@ -28,9 +29,9 @@ export default () => {
               <div className='card-body'>
                 <h5 className='card-title'>{title}</h5>
                 <h6 className='card-subtitle mb-2 text-muted'>Comments:</h6>
-                <p className='card-text'>
-                  <CommentList id={id}></CommentList>
-                </p>
+                <div className='card-text'>
+                  <CommentList id={id} comments={comments}></CommentList>
+                </div>
                 <CommentCreate postId={id}></CommentCreate>
               </div>
             </div>

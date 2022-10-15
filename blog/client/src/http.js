@@ -35,9 +35,15 @@ const postComment = async (params) => {
   return res.json();
 };
 
+const getAllPostsAndComments = async () => {
+  const res = await fetch('http://localhost:4002/posts');
+  return await res.json();
+}
+
 export default {
   getPosts,
   postTitle,
   getComment,
   postComment,
+  getAllPostsAndComments,
 };

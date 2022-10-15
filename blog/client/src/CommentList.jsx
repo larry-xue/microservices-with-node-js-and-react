@@ -2,24 +2,24 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import http from './http';
 
-export default ({ id }) => {
-  const [comments, setComments] = useState([]);
-  const getComments = async () => {
-    const data = await http.getComment({id})
-    console.log(data)
-    setComments(data);
-  }
-  useEffect(() => {
-    getComments()
-  }, []);
+export default ({ id, comments }) => {
+  // const [comments, setComments] = useState([]);
+  // const getComments = async () => {
+  //   const data = await http.getComment({id})
+  //   console.log(data)
+  //   setComments(data);
+  // }
+  // useEffect(() => {
+  //   getComments()
+  // }, []);
 
   return (
-    <div className='list-group'>
+    <div className='list-group' style={{ margin: '10px 0' }}>
       {comments.map(({ id, content }) => {
         return (
-          <div key={id} className='list-group-item'>
+          <span key={id} className='list-group-item'>
             {content}
-          </div>
+          </span>
         );
       })}
     </div>
