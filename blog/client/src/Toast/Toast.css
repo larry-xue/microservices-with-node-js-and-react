@@ -1,0 +1,15 @@
+.alert {
+  border: 1px solid #ccc;
+  max-width: 400px;
+  width: 300px;
+  background-color: antiquewhite;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+}
+
+.alert .alert-header {
+  display: flex;
+  justify-content: space-between;
+}
