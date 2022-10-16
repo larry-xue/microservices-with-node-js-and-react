@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  replicas: 1 # numbers of pods
+  selector:
+    matchLabels:
+      app: posts # app is just a custom label
+  template:
+    metadata:
+      labels:
+        app: posts # set a label
+    spec:
+      containers:
+        - name: posts
+          image: azouxyj/posts
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  selector:
+    app: posts
+  type: ClusterIP # ClusterIP is default service
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

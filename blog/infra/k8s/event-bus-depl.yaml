@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  replicas: 1 # numbers of pods
+  selector:
+    matchLabels:
+      app: event-bus # app is just a custom label
+  template:
+    metadata:
+      labels:
+        app: event-bus # set a label
+    spec:
+      containers:
+        - name: event-bus
+          image: azouxyj/event-bus
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  selector:
+    app: event-bus
+  type: ClusterIP # ClusterIP is default service
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005

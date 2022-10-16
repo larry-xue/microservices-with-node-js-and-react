@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  replicas: 1 # numbers of pods
+  selector:
+    matchLabels:
+      app: comments # app is just a custom label
+  template:
+    metadata:
+      labels:
+        app: comments # set a label
+    spec:
+      containers:
+        - name: comments
+          image: azouxyj/comments
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+spec:
+  selector:
+    app: comments
+  type: ClusterIP # ClusterIP is default service
+  ports:
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
