@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import http from './http';
 
-export default ({ id, comments }) => {
+export default ({ id, comments = [] }) => {
   // const [comments, setComments] = useState([]);
   // const getComments = async () => {
   //   const data = await http.getComment({id})
@@ -12,7 +12,6 @@ export default ({ id, comments }) => {
   // useEffect(() => {
   //   getComments()
   // }, []);
-
   return (
     <div className='list-group' style={{ margin: '10px 0' }}>
       {comments.map(({ id, content, status }) => {

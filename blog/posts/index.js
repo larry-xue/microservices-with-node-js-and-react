@@ -20,7 +20,7 @@ app.get('/posts', (req, res) => {
   res.send(posts);
 });
 
-app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
   const {
     title
   } = req.body
@@ -40,6 +40,6 @@ app.post('/posts', async (req, res) => {
 });
 
 app.listen(4000, () => {
-  console.log('version: 0.0.5')
+  console.log('version: 0.0.6')
   console.log('posts server runing on port 4000.');
 });

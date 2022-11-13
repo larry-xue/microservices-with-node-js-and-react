@@ -1,5 +1,5 @@
-const postBaseURL = 'http://localhost:4000/posts';
-const commentBaseURL = 'http://localhost:4001/posts';
+const postBaseURL = 'http://posts.com/posts';
+const commentBaseURL = 'http://posts.com/posts';
 
 const getPosts = async () => {
   const res = await fetch(postBaseURL);
@@ -7,7 +7,7 @@ const getPosts = async () => {
 };
 
 const postTitle = async (params) => {
-  const res = await fetch(postBaseURL, {
+  const res = await fetch(postBaseURL + '/create', {
     method: 'post',
     mode: 'cors',
     headers: {
@@ -36,7 +36,7 @@ const postComment = async (params) => {
 };
 
 const getAllPostsAndComments = async () => {
-  const res = await fetch('http://localhost:4002/posts');
+  const res = await fetch('http://posts.com/posts');
   return await res.json();
 }
 
