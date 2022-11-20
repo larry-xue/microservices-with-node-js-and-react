@@ -4,12 +4,13 @@ import { useState } from 'react';
 type Method = 'post' | 'get' | 'delete' | 'put';
 type CustomError = { message: string; field?: string };
 
-function useRequest<T>(url: string, method: Method, body: any) {
+function useRequest<T>(url: string, method: Method, body: any, onSuccess: () => void) {
   const [errors, setErrors] = useState<CustomError[]>([]);
   const doReuest = async () => {
     try {
       const response = await axios[method]<T>(url, body);
       setErrors([]);
+      onSuccess();
       return response.data;
     } catch (err: any) {
       setErrors(err.response.data.errors);

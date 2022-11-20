@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import { FormEvent, useState } from 'react';
 import Alert from '../../components/common/alert';
 import useRequest from '../../hooks/use-request';
@@ -5,19 +6,23 @@ import useRequest from '../../hooks/use-request';
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { doReuest, errors } = useRequest(
+  const { doReuest, errors } = useRequest<{
+    email: string;
+    id: string;
+  }>(
     'https://ticketing.dev/api/users/signup',
     'post',
     {
       email,
       password,
-    }
+    },
+    () => Router.push('/')
   );
 
   const signUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email.trim() === '' || password.trim() === '') return;
-    doReuest();
+    await doReuest();
   };
 
   return (
