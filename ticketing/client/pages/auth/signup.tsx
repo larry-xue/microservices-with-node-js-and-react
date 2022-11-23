@@ -119,7 +119,7 @@ export default () => {
 
             <button
               type='submit'
-              className='ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white'>
+              className='ml-3 inline-block rounded-lg bg-gray-600 px-5 py-3 text-sm font-medium text-white'>
               Sign up
             </button>
           </div>
@@ -135,7 +135,7 @@ export default () => {
       <div className='relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2'>
         <img
           alt='Welcome'
-          src='https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+          src='https://images.unsplash.com/photo-1664961917449-c5ef0d09d49f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8UzRNS0xBc0JCNzR8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=60'
           className='absolute inset-0 h-full w-full object-cover'
         />
       </div>
