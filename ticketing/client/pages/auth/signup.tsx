@@ -10,7 +10,7 @@ export default () => {
     email: string;
     id: string;
   }>(
-    'https://ticketing.dev/api/users/signup',
+    '/api/users/signup',
     'post',
     {
       email,
@@ -123,7 +123,7 @@ export default () => {
               Sign up
             </button>
           </div>
-          {errors.map((err) => (
+          {errors && errors.map((err) => (
             <Alert
               key={err.message}
               title={err.field || ''}

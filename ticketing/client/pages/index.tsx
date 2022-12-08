@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { CurrentUser } from './auth/models';
 
-const Home = (props: { color: string }) => {
-  console.log('on client, color is: ', props);
+const Home = ({ currentUser }: { currentUser: CurrentUser }) => {
+  console.log('on client, color is: ', currentUser);
   return (
     <section className='overflow-hidden bg-[url(https://images.unsplash.com/photo-1667501270403-31dc26f7d2ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1616&q=80)] w-full h-screen bg-cover bg-center bg-no-repeat'>
       <div className='bg-black/25 p-8 md:p-12 lg:px-16 lg:py-24 w-full h-screen'>
@@ -43,12 +44,28 @@ const Home = (props: { color: string }) => {
 };
 
 Home.getInitialProps = async () => {
-  // const response = await axios.get(
-  //   'https://ticketing.dev/api/users/currentuser'
-  // );
-  console.log()
-  // return response.data;
-  return process.env;
+  if (typeof window === 'undefined') {
+    // ssr
+    let response = { data: {} };
+    try {
+      response = await axios.get(
+        // http://NAMESPACE.NAMEOFSERVICE.svc.cluster.local
+        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
+        {
+          headers: {
+            Host: 'ticketing.dev',
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    return response.data || {};
+  } else {
+    // browser
+    const response = await axios.get('/api/users/currentuser');
+    return response.data;
+  }
 };
 
 export default Home;

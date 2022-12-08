@@ -10,4 +10,10 @@ interface AuthError {
   }[];
 }
 
-export type { SignupResp, AuthError };
+interface CurrentUser {
+  id: string;
+  email: string;
+  iat: number;
+}
+
+export type { SignupResp, AuthError, CurrentUser };
